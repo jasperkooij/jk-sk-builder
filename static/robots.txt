@@ -7,4 +7,4 @@ Disallow: /admin/
 Disallow: /private/
 
 # Specify the sitemap location (optional)
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://jasperkooij.com/sitemap.xml
