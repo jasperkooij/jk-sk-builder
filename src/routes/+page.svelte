@@ -9,7 +9,13 @@
 
 	// show unpublished content when in preview mode.
 	const canShowContent = data.content || isPreviewing();
+	console.log(JSON.stringify(data.content))
 </script>
+
+<svelte:head>
+	<title>{data.content.data.title} | Jasper Kooij</title>
+	<meta name="description" content={data.content.data.description} />
+</svelte:head>
 
 <main>
 	<!-- TO DO: Add your Public API Key in <Content/>-->
