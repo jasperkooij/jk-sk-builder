@@ -14,7 +14,7 @@
 		if (!document.querySelector('script[src*="gtag/js"]')) {
 			const script = document.createElement('script');
 			script.async = true;
-			script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+			script.src = `/gtag.js?id=${ga4Id}`;
 			document.head.appendChild(script);
 
 			script.onload = () => {
