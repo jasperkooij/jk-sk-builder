@@ -1,5 +1,6 @@
 <script>
 	import { isPreviewing, Content } from '@builder.io/sdk-svelte';
+	import ContactForm from '$lib/components/ContactForm.svelte';
 
 	const apiKey = import.meta.env.VITE_PUBLIC_BUILDER_API_KEY;
 	const model = 'page';
@@ -24,3 +25,9 @@
 		Content Not Found
 	{/if}
 </main>
+<section class="py-12">
+	<div class="container mx-auto px-4">
+		<h1 class="mb-8 text-center text-4xl font-bold">Let's Talk</h1>
+		<ContactForm />
+	</div>
+</section>
