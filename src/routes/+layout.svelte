@@ -1,38 +1,45 @@
 <script lang="ts">
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
 	import '../app.css';
-
-	const GA_MEASUREMENT_ID = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
-
-	if (browser) {
-		// Google Analytics script
-		const gaScript = document.createElement('script');
-		gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-		gaScript.async = true;
-		document.head.appendChild(gaScript);
-
-		// Initialize gtag
-		window.dataLayer = window.dataLayer || [];
-		function gtag(...args: [string, Date | string, string?]): void {
-			window.dataLayer.push(args);
-		}
-		gtag('js', new Date());
-		gtag('config', GA_MEASUREMENT_ID);
-
-		// Track page views
-		page.subscribe((currentPage) => {
-			gtag('event', 'page_view', {
-				page_location: currentPage.url.href,
-				page_path: currentPage.url.pathname,
-				page_title: document.title
-			});
-		});
-	}
-
-	injectSpeedInsights();
 	let { children } = $props();
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		const ga4Id = import.meta.env.VITE_GOOGLE_ANALYTICS_ID;
+
+		if (!ga4Id) {
+			console.error("GA4 ID is missing. Check your environment variables.");
+			return;
+		}
+
+		if (!document.querySelector('script[src*="gtag/js"]')) {
+			const script = document.createElement('script');
+			script.async = true;
+			script.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+			document.head.appendChild(script);
+
+			script.onload = () => {
+				window.dataLayer = window.dataLayer || [];
+				// Define gtag *inside* onload, after dataLayer
+				function gtag(){window.dataLayer.push(arguments);} // Access window.dataLayer
+
+				gtag('js', new Date());
+				gtag('config', ga4Id);
+
+				gtag('event', 'page_view', {
+					page_title: document.title,
+					page_location: window.location.href,
+				});
+			};
+
+			script.onerror = () => {
+				console.error("Failed to load GA4 script.");
+			};
+
+		} else {
+			console.warn("GA4 script already loaded. Skipping.");
+		}
+	});
+
 </script>
 
 {@render children()}
