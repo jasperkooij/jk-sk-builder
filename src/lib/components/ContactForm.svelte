@@ -1,99 +1,154 @@
-<!-- src/components/ContactForm.svelte -->
 <script>
-	let formData = {
-		name: '',
-		email: '',
-		message: ''
-	};
-
-	let successMessage = '';
+	// State variables
+	let name = '';
+	let email = '';
+	let phone = '';
+	let message = '';
+	let verificationAnswer = '';
 	let errorMessage = '';
+	let successMessage = '';
 
+	// Regex for validating USA phone numbers
+	const phoneRegex = /^(\+1\s?)?(\([0-9]{3}\)|[0-9]{3})[-.\s]?[0-9]{3}[-.\s]?[0-9]{4}$/;
+
+	// Function to handle form submission
 	async function handleSubmit(event) {
-		event.preventDefault();
+		event.preventDefault(); // Prevent default form submission
 
+		// Validate the verification answer
+		if (verificationAnswer.trim() !== '8') {
+			errorMessage = 'Incorrect answer. Please try again.';
+			successMessage = '';
+			return;
+		}
+
+		// Validate the phone number
+		if (phone && !phoneRegex.test(phone)) {
+			errorMessage = 'Please enter a valid USA phone number.';
+			successMessage = '';
+			return;
+		}
+
+		// Clear any previous error messages
+		errorMessage = '';
+
+		// Send data to Formspree
 		const response = await fetch('https://formspree.io/f/myyvpapn', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(formData)
+			body: JSON.stringify({ name, email, phone, message }),
 		});
 
 		if (response.ok) {
-			successMessage = 'Your message has been sent successfully!';
-			errorMessage = '';
-			formData = { name: '', email: '', message: '' }; // Reset form
+			// Reset the form and show a success message
+			name = '';
+			email = '';
+			phone = '';
+			message = '';
+			verificationAnswer = '';
+			successMessage = 'Message sent successfully!';
 		} else {
-			errorMessage = 'There was an error sending your message. Please try again.';
-			successMessage = '';
+			errorMessage = 'There was an error submitting the form. Please try again.';
 		}
 	}
 </script>
 
-<div class="mx-auto max-w-md">
-	<form on:submit|preventDefault={handleSubmit} class="card bg-base-100 p-6 shadow-xl">
-		<h2 class="mb-4 text-2xl font-bold">Contact Us</h2>
+<!-- Form -->
+<form on:submit={handleSubmit} class="max-w-md mx-auto p-6 bg-base-200 rounded-lg shadow-md">
+	<h1 class="text-2xl font-bold text-center mb-4">Contact Us</h1>
 
-		<!-- Success Message -->
-		{#if successMessage}
-			<div class="alert alert-success">
-				<span>{successMessage}</span>
-			</div>
-		{/if}
+	<!-- Name Field -->
+	<div class="form-control">
+		<label class="label" for="name">
+			<span class="label-text">Name:</span>
+		</label>
+		<input
+			type="text"
+			id="name"
+			name="name"
+			bind:value={name}
+			required
+			placeholder="Enter your name"
+			class="input input-bordered w-full"
+		/>
+	</div>
 
-		<!-- Error Message -->
-		{#if errorMessage}
-			<div class="alert alert-error">
-				<span>{errorMessage}</span>
-			</div>
-		{/if}
+	<!-- Email Field -->
+	<div class="form-control mt-4">
+		<label class="label" for="email">
+			<span class="label-text">Email:</span>
+		</label>
+		<input
+			type="email"
+			id="email"
+			name="email"
+			bind:value={email}
+			required
+			placeholder="Enter your email"
+			class="input input-bordered w-full"
+		/>
+	</div>
 
-		<!-- Name Field -->
-		<div class="mb-4 grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_2fr]">
-			<label class="label justify-start" for="name">
-				<span class="label-text">Name</span>
-			</label>
-			<input
-				type="text"
-				id="name"
-				placeholder="Your Name"
-				class="input input-bordered w-full"
-				bind:value={formData.name}
-				required
-			/>
-		</div>
+	<!-- Phone Number Field -->
+	<div class="form-control mt-4">
+		<label class="label" for="phone">
+			<span class="label-text">Phone Number:</span>
+		</label>
+		<input
+			type="tel"
+			id="phone"
+			name="phone"
+			bind:value={phone}
+			placeholder="Enter your phone number (e.g., +1 123-456-7890)"
+			class="input input-bordered w-full"
+		/>
+	</div>
 
-		<!-- Email Field -->
-		<div class="mb-4 grid grid-cols-1 items-center gap-4 md:grid-cols-[1fr_2fr]">
-			<label class="label justify-start" for="email">
-				<span class="label-text">Email</span>
-			</label>
-			<input
-				type="email"
-				id="email"
-				placeholder="Your Email"
-				class="input input-bordered w-full"
-				bind:value={formData.email}
-				required
-			/>
-		</div>
+	<!-- Message Field -->
+	<div class="form-control mt-4">
+		<label class="label" for="message">
+			<span class="label-text">Message:</span>
+		</label>
+		<textarea
+			id="message"
+			name="message"
+			bind:value={message}
+			required
+			placeholder="Enter your message"
+			class="textarea textarea-bordered w-full"
+		></textarea>
+	</div>
 
-		<!-- Message Field -->
-		<div class="mb-4 grid grid-cols-1 items-start gap-4 md:grid-cols-[1fr_2fr]">
-			<label class="label justify-start" for="message">
-				<span class="label-text">Message</span>
-			</label>
-			<textarea
-				id="message"
-				placeholder="Your Message"
-				class="textarea textarea-bordered h-24 w-full"
-				bind:value={formData.message}
-				required
-			></textarea>
-		</div>
+	<!-- Verification Question -->
+	<div class="form-control mt-4">
+		<label class="label" for="verification">
+			<span class="label-text">How much is four times 2?</span>
+		</label>
+		<input
+			type="text"
+			id="verification"
+			name="verification"
+			bind:value={verificationAnswer}
+			required
+			placeholder="Enter your answer"
+			class="input input-bordered w-full"
+		/>
+	</div>
 
-		<!-- Submit Button -->
-		<button type="submit" class="btn btn-primary mt-6 w-full">Send Message</button>
-	</form>
-</div>
+	<!-- Error Message -->
+	{#if errorMessage}
+		<p class="text-error text-center mt-4">{errorMessage}</p>
+	{/if}
+
+	<!-- Success Message -->
+	{#if successMessage}
+		<p class="text-success text-center mt-4">{successMessage}</p>
+	{/if}
+
+	<!-- Submit Button -->
+	<button type="submit" class="btn btn-primary mt-6 w-full">
+		Send Message
+	</button>
+</form>

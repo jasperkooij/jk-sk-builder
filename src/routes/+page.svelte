@@ -10,6 +10,7 @@
 
 	// show unpublished content when in preview mode.
 	const canShowContent = data.content || isPreviewing();
+
 </script>
 
 <svelte:head>

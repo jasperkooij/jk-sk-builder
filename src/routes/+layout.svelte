@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import Navbar from '$lib/components/Navbar.svelte';
 	let { children } = $props();
 	import { onMount } from 'svelte';
 
@@ -41,5 +42,5 @@
 	});
 
 </script>
-
+<Navbar />
 {@render children()}
