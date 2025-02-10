@@ -36,9 +36,9 @@
 		const response = await fetch('https://formspree.io/f/myyvpapn', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ name, email, phone, message }),
+			body: JSON.stringify({ name, email, phone, message })
 		});
 
 		if (response.ok) {
@@ -56,8 +56,8 @@
 </script>
 
 <!-- Form -->
-<form on:submit={handleSubmit} class="max-w-md mx-auto p-6 bg-base-200 rounded-lg shadow-md">
-	<h1 class="text-2xl font-bold text-center mb-4">Contact Us</h1>
+<form on:submit={handleSubmit} class="bg-base-200 mx-auto max-w-md rounded-lg p-6 shadow-md">
+	<h1 class="mb-4 text-center text-2xl font-bold">Contact Us</h1>
 
 	<!-- Name Field -->
 	<div class="form-control">
@@ -139,16 +139,14 @@
 
 	<!-- Error Message -->
 	{#if errorMessage}
-		<p class="text-error text-center mt-4">{errorMessage}</p>
+		<p class="text-error mt-4 text-center">{errorMessage}</p>
 	{/if}
 
 	<!-- Success Message -->
 	{#if successMessage}
-		<p class="text-success text-center mt-4">{successMessage}</p>
+		<p class="text-success mt-4 text-center">{successMessage}</p>
 	{/if}
 
 	<!-- Submit Button -->
-	<button type="submit" class="btn btn-primary mt-6 w-full">
-		Send Message
-	</button>
+	<button type="submit" class="btn btn-primary mt-6 w-full"> Send Message </button>
 </form>
