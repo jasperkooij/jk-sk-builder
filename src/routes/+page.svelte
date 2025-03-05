@@ -27,7 +27,6 @@
 </main>
 <section class="py-12">
 	<div class="container mx-auto px-4">
-		<h1 class="mb-8 text-center text-4xl font-bold">Let's Talk</h1>
 		<ContactForm />
 	</div>
 </section>
