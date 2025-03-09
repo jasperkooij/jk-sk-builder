@@ -10,7 +10,7 @@
 		<div class="ml-auto flex">
 			<a
 				href="https://bsky.app/profile/jasperkooij.com"
-				title="link"
+				title="Link to BlueSky Social Profile"
 				aria-label="Link to BlueSky Social Profile"
 				target="_blank"
 				class=""
