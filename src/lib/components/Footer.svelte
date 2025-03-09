@@ -128,6 +128,14 @@
 			>
 				<Icon icon="ri:bluesky-fill" width="48" height="48" />
 			</a>
+			<a
+				href="https://linkedin.com/jasperkooij.com"
+				title="link"
+				aria-label="Link to LinkedIn Social Profile"
+				target="_blank"
+			>
+				<Icon icon="ri:linkedin-fill" width="48" height="48" />
+			</a>
 		</div>
 	</nav>
 	<aside>
