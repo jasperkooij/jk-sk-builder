@@ -28,6 +28,9 @@ devDependencies:
   '@eslint/compat':
     specifier: ^1.2.7
     version: 1.2.7(eslint@9.21.0)
+  '@iconify/svelte':
+    specifier: ^4.2.0
+    version: 4.2.0(svelte@5.22.4)
   '@sveltejs/adapter-vercel':
     specifier: ^5.6.3
     version: 5.6.3(@sveltejs/kit@2.18.0)
@@ -39,9 +42,9 @@ devDependencies:
     version: 5.0.3(svelte@5.22.4)(vite@6.2.0)
   autoprefixer:
     specifier: ^10.4.20
-    version: 10.4.20(postcss@8.5.2)
+    version: 10.4.20(postcss@8.5.3)
   daisyui:
-    specifier: ^5.0.0-beta.9
+    specifier: ^5.0.0
     version: 5.0.0
   eslint:
     specifier: ^9.21.0
@@ -637,6 +640,19 @@ packages:
   /@humanwhocodes/retry@0.4.2:
     resolution: {integrity: sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==}
     engines: {node: '>=18.18'}
+    dev: true
+
+  /@iconify/svelte@4.2.0(svelte@5.22.4):
+    resolution: {integrity: sha512-fEl0T7SAPonK7xk6xUlRPDmFDZVDe2Z7ZstlqeDS/sS8ve2uyU+Qa8rTWbIqzZJlRvONkK5kVXiUf9nIc+6OOQ==}
+    peerDependencies:
+      svelte: '>4.0.0'
+    dependencies:
+      '@iconify/types': 2.0.0
+      svelte: 5.22.4
+    dev: true
+
+  /@iconify/types@2.0.0:
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
     dev: true
 
   /@isaacs/cliui@8.0.2:
@@ -1360,7 +1376,7 @@ packages:
     resolution: {integrity: sha512-tLRNUXati5MFePdAk8dw7Qt7DpxPB60ofAgn8WRhW6a2rcimZnYBP9oxHiv0OHy+Wz7kPMG+t4LGdt31+4EmGg==}
     dev: true
 
-  /autoprefixer@10.4.20(postcss@8.5.2):
+  /autoprefixer@10.4.20(postcss@8.5.3):
     resolution: {integrity: sha512-XY25y5xSv/wEoqzDyXXME4AFfkZI0P23z6Fs3YgymDnKJkCGOnkL0iTxCa85UTqaSgfcqyf3UA6+c7wUvx/16g==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
@@ -1372,7 +1388,7 @@ packages:
       fraction.js: 4.3.7
       normalize-range: 0.1.2
       picocolors: 1.1.1
-      postcss: 8.5.2
+      postcss: 8.5.3
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -2559,6 +2575,7 @@ packages:
       nanoid: 3.3.8
       picocolors: 1.1.1
       source-map-js: 1.2.1
+    dev: false
 
   /postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
