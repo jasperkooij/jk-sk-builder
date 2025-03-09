@@ -122,19 +122,48 @@
 		<div class="text-neutral-content grid grid-flow-col gap-4">
 			<a
 				href="https://bsky.app/profile/jasperkooij.com"
-				title="link"
+				title="Link to BlueSky Social Profile"
 				aria-label="Link to BlueSky Social Profile"
 				target="_blank"
+				class="hover:text-blue-500"
 			>
-				<Icon icon="ri:bluesky-fill" width="48" height="48" />
+				<Icon icon="ri:bluesky-fill" width="36" height="36" />
 			</a>
 			<a
 				href="https://linkedin.com/jasperkooij.com"
-				title="link"
+				title="Link to LinkedIn Social Profile"
 				aria-label="Link to LinkedIn Social Profile"
 				target="_blank"
+				class="hover:text-blue-500"
 			>
-				<Icon icon="ri:linkedin-fill" width="48" height="48" />
+				<Icon icon="ri:linkedin-fill" width="36" height="36" />
+			</a>
+			<a
+				href="https://discordapp.com/users/jasperkooij"
+				title="Link to Discord Social Profile"
+				aria-label="Link to Discord Social Profile"
+				target="_blank"
+				class="hover:text-blue-500"
+			>
+				<Icon icon="ri:discord-fill" width="36" height="36" />
+			</a>
+			<a
+				href="https://github.com/jasperkooij"
+				title="Link to Github"
+				aria-label="Link to Github"
+				target="_blank"
+				class="hover:text-blue-500"
+			>
+				<Icon icon="ri:github-fill" width="36" height="36" />
+			</a>
+			<a
+				href="https://twitter.com/jasperkooij/"
+				title="Link to Twitter Social Profile"
+				aria-label="Link to Twitter Social Profile"
+				target="_blank"
+				class="hover:text-blue-500"
+			>
+				<Icon icon="ri:twitter-fill" width="36" height="36" />
 			</a>
 		</div>
 	</nav>
